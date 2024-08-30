@@ -12,7 +12,7 @@ body {
 .login-container {
     display: flex;
     width: 80%;
-    max-width: 1200px;
+    max-width: 900px;
     background-color: white;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     border-radius: 12px;
@@ -24,15 +24,16 @@ body {
     background-image: url('/path-to-your-image.png'); /* Replace with your image */
     background-size: cover;
     background-position: center;
+    display: none; /* Hide image on smaller screens */
 }
 
 .login-form-container {
     flex: 1;
-    padding: 4rem;
+    padding: 3rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: #fff;
+    background-color: #f9f9f9;
 }
 
 .login-form h2 {
@@ -40,12 +41,14 @@ body {
     color: #333;
     margin-bottom: 1rem;
     font-weight: 700;
+    text-align: center;
 }
 
 .login-form p {
     color: #888;
     margin-bottom: 2rem;
-    font-size: 0.875rem;
+    font-size: 1rem;
+    text-align: center;
 }
 
 .login-form input {
@@ -55,7 +58,7 @@ body {
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 1rem;
-    background-color: #f9f9f9;
+    background-color: #fff;
 }
 
 .login-form input:focus {
@@ -84,6 +87,7 @@ body {
     display: flex;
     align-items: center;
     margin-bottom: 1.5rem;
+    font-size: 0.875rem;
 }
 
 .login-form .terms input {
@@ -91,6 +95,7 @@ body {
 }
 
 .login-form a {
+    display: block;
     text-align: center;
     margin-top: 1rem;
     color: #0056b3;
@@ -106,6 +111,7 @@ body {
     .login-container {
         flex-direction: column;
         width: 100%;
+        box-shadow: none; /* Remove shadow on smaller screens */
     }
 
     .login-image {
@@ -118,5 +124,14 @@ body {
 
     .login-form h2 {
         font-size: 1.5rem;
+    }
+
+    .login-form p {
+        font-size: 0.875rem;
+    }
+
+    .login-form button {
+        font-size: 1rem;
+        padding: 0.875rem;
     }
 }
