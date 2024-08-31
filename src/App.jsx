@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+// import './App.css';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -7,8 +8,8 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import AboutPage from './components/About';
-// import Cart from './components/Cart';
-// import CheckoutPage from './pages/CheckoutPage';
+import CartPage from './components/CartPage';
+// import CheckoutList from './components/CheckoutList';
 
 const App = () => {
     return (
@@ -21,8 +22,8 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/about" element={<AboutPage />} />{" "}
           {/* Add the About route */}
-          {/* <Route path="/cart" element={<Cart />} /> */}
-          {/* <Route path="/checkout" element={<CheckoutPage />} /> */}
+          <Route path="/cart" element={<CartPage />} /> 
+          {/* <Route path="/checkout" element={<CheckoutList />} /> */}
         </Routes>
 
         <Footer />

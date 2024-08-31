@@ -1,14 +1,13 @@
 /* Footer.css */
 footer {
-    background-color: #333;
-    color: #fff;
+    background-color: var(--secondary-color);
+    color: var(--text-color-light);
+    padding: 1rem 2rem;
     text-align: center;
-    padding: 2rem;
-    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
-    position: relative;
+    width: 70%; /* Full width */
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+    position: fixed;
     bottom: 0;
-    width: 100%;
-    font-family: 'Arial', sans-serif;
 }
 
 footer p {
