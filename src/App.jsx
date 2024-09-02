@@ -3,8 +3,12 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 // import './App.css';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Home from './pages/Home';
+
 // import ProductPage from './pages/ProductPage';
+
+// import Home from './pages/Home';
+import ProductPage from './pages/ProductPage';
+
 import Login from './pages/Login';
 import Register from './pages/Register';
 import AboutPage from './components/About';
@@ -13,6 +17,7 @@ import CartPage from './components/CartPage';
 
 const App = () => {
     return (
+
       <Router>
         <Navbar />
         <Routes>
@@ -28,6 +33,7 @@ const App = () => {
 
         <Footer />
       </Router>
+
     );
 };
 
