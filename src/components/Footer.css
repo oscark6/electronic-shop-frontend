@@ -4,7 +4,7 @@ footer {
     color: var(--text-color-light);
     padding: 1rem 2rem;
     text-align: center;
-    width: 70%; /* Full width */
+    width: 100%; /* Full width */
     box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
     position: fixed;
     bottom: 0;

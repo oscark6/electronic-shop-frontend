@@ -18,7 +18,7 @@ nav {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     position: sticky;
     top: 0;
-    width: 120%; /* Ensures the navbar takes up the full width */
+    width: 18-00px; /* Ensures the navbar takes up the full width */
     box-sizing: border-box; /* Ensures padding and border are included in the element's width and height */
     z-index: 1000;
 }

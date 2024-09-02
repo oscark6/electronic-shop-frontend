@@ -87,8 +87,11 @@ const HomePage = () => {
               </p>
             </div>
             <div className="category">
-              <h2>Laptops</h2>
-              <p>Find the perfect laptop for work, gaming, or school.</p>
+              <h2>computer & accessories</h2>
+              <p>
+                Find the perfect computer & accessories for work, gaming, or
+                school.
+              </p>
             </div>
             <div className="category">
               <h2>Home Appliances</h2>
@@ -99,8 +102,8 @@ const HomePage = () => {
               <p>Discover our innovative wearables and smartwatches.</p>
             </div>
             <div className="category">
-              <h2>Audio Equipment</h2>
-              <p>Experience superior sound quality with our audio products.</p>
+              <h2>smart devices</h2>
+              <p>Experience superior quality with our smart devices.</p>
             </div>
           </div>
         </div>
