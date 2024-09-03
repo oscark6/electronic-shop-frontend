@@ -1,0 +1,120 @@
+/* UserDashboard.css */
+
+.container {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    height: 100vh;
+    background: linear-gradient(135deg, #e0e0e0 0%, #ffffff 100%);
+  }
+  
+  .sidebar {
+    background: linear-gradient(135deg, #6e8efb 0%, #a777e3 100%);
+    color: #fff;
+    padding: 20px;
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sidebar ul li {
+    margin: 20px 0;
+  }
+  
+  .sidebar a {
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    font-size: 1.2em;
+  }
+  
+  .sidebar a .icon {
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .sidebar a:hover {
+    color: #ffeb3b;
+  }
+  
+  .sidebar a .icon svg {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .sidebar a:hover .icon svg {
+    transform: scale(1.2);
+  }
+  
+  .content {
+    padding: 20px;
+    overflow-y: auto;
+    background: #f8f9fa;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .content h1 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .profile {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .profile-img {
+    flex-shrink: 0;
+    margin-right: 20px;
+  }
+  
+  .profile-img svg {
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+    padding: 10px;
+  }
+  
+  .profile-details {
+    font-size: 1.1em;
+    color: #555;
+  }
+  
+  .profile-details div {
+    margin-bottom: 10px;
+  }
+  
+  .logout-btn {
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    color: #fff;
+    background: #ff4b2b;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+  
+  .logout-btn:hover {
+    background: #ff416c;
+    transform: scale(1.05);
+  }
+  
+  .logout-btn:active {
+    transform: scale(0.95);
+  }
+  

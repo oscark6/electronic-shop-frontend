@@ -1,41 +1,86 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Updated import
-// import { login } from './api'; // Ensure you have the correct path for your API functions
-import './Login.css';
+import { useNavigate, Link } from 'react-router-dom';
+import "./Login.css";
 
 const LoginPage = () => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const navigate = useNavigate(); // Updated to useNavigate
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await login(username, password);
-            localStorage.setItem('token', response.data.access_token);
-            navigate('/dashboard'); // Updated to useNavigate
-        } catch (error) {
-            console.error('Login failed:', error);
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch('http://127.0.0.1:5000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username,
+          password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        localStorage.setItem('access_token', data.access_token);
+        localStorage.setItem('user', JSON.stringify({
+          id: data.id,
+          username: data.username,
+          email: data.email,
+          phone_number: data.phone_number, // Ensure the field matches the backend response
+          role: data.role,
+        }));
+
+        // Redirect based on user role
+        if (data.role === 'admin') {
+          navigate('/admin-dashboard');
+        } else {
+          navigate('/user-dashboard');
         }
-    };
+      } else {
+        alert(data.message || 'Invalid credentials');
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      alert('An error occurred. Please try again.');
+    }
+  };
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <input
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder="Username"
-            />
-            <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-            />
-            <button type="submit">Login</button>
-        </form>
-    );
+  return (
+    <div className="login-container">
+      <h2>Login</h2>
+      <form onSubmit={handleLogin}>
+        <div className="form-group">
+          <label htmlFor="username">Username:</label>
+          <input
+            type="text"
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        <button type="submit" className="login-button">Log In</button>
+        <div className="makeblack">
+          Don't have an account?{' '}
+          <Link to="/signup">Sign Up</Link>
+        </div>
+      </form>
+    </div>
+  );
 };
 
 export default LoginPage;

@@ -1,0 +1,125 @@
+.about-container {
+    padding-top: 500px;
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    line-height: 1.7;
+}
+
+.about-title {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.about-description,
+.about-contact {
+    margin-bottom: 1.5rem;
+    color: #555;
+}
+
+.about-subtitle {
+    font-size: 1.75rem;
+    color: #333;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 0.5rem;
+}
+
+.about-address,
+.about-phone-email,
+.about-hours {
+    margin-bottom: 1rem;
+    color: #666;
+}
+
+.about-address strong,
+.about-phone-email strong,
+.about-hours strong {
+    color: #333;
+}
+
+.about-map {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.about-map iframe {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.about-contact a {
+    color: #4caf50;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.about-contact a:hover {
+    text-decoration: underline;
+}
+
+/* Media Queries */
+
+/* Tablets (Portrait and Landscape) */
+@media (max-width: 768px) {
+    .about-container {
+        padding: 1rem;
+    }
+
+    .about-title {
+        font-size: 2rem;
+    }
+
+    .about-description,
+    .about-contact,
+    .about-address,
+    .about-phone-email,
+    .about-hours {
+        font-size: 1rem;
+    }
+
+    .about-subtitle {
+        font-size: 1.5rem;
+    }
+
+    .about-map iframe {
+        width: 100%;
+        height: 350px;
+    }
+}
+
+/* Mobile Devices */
+@media (max-width: 480px) {
+    .about-container {
+        padding: 0.5rem;
+    }
+
+    .about-title {
+        font-size: 1.5rem;
+    }
+
+    .about-description,
+    .about-contact,
+    .about-address,
+    .about-phone-email,
+    .about-hours {
+        font-size: 0.9rem;
+    }
+
+    .about-subtitle {
+        font-size: 1.25rem;
+    }
+
+    .about-map iframe {
+        height: 250px;
+    }
+}

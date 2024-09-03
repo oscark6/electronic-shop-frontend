@@ -1,85 +1,91 @@
-// // // CartPage.js
-// // import React, { useState, useEffect } from 'react';
-// // // import { viewCart, removeFromCart } from './api';
+import React, { useState, useEffect } from 'react';
 
-// // const CartPage = () => {
-// //     const [cartItems, setCartItems] = useState([]);
-// //     const token = localStorage.getItem('token');
+const Cart = () => {
+  const [cartItems, setCartItems] = useState([]);
 
-// //     useEffect(() => {
-// //         const fetchCartItems = async () => {
-// //             try {
-// //                 const response = await viewCart(token);
-// //                 setCartItems(response.data.cart_items);
-// //             } catch (error) {
-// //                 console.error('Failed to fetch cart items:', error);
-// //             }
-// //         };
-// //         fetchCartItems();
-// //     }, [token]);
+  const fetchCartItems = async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:5000/cart/get', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
 
-// //     const handleRemove = async (cartId) => {
-// //         try {
-// //             await removeFromCart(token, cartId);
-// //             setCartItems(cartItems.filter(item => item.cart_id !== cartId));
-// //         } catch (error) {
-// //             console.error('Failed to remove item:', error);
-// //         }
-// //     };
+      if (response.ok) {
+        const data = await response.json();
+        setCartItems(data.cart_items);
+      } else {
+        const errorText = await response.text();
+        console.error('Failed to fetch cart items:', errorText);
+      }
+    } catch (error) {
+      console.error('Error fetching cart items:', error);
+    }
+  };
 
-// //     return (
-// //         <div>
-// //             <h2>Cart</h2>
-// //             <ul>
-// //                 {cartItems.map(item => (
-// //                     <li key={item.cart_id}>
-// //                         {item.product_name} - {item.quantity} - ${item.total_price}
-// //                         <button onClick={() => handleRemove(item.cart_id)}>Remove</button>
-// //                     </li>
-// //                 ))}
-// //             </ul>
-// //         </div>
-// //     );
-// // };
+  useEffect(() => {
+    fetchCartItems();
+  }, []);
 
-// // export default Cart;
+  const addToCart = async (productId, quantity) => {
+    try {
+      const response = await fetch('http://127.0.0.1:5000/cart', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+        body: JSON.stringify({ productId, quantity }),
+      });
 
+      if (response.ok) {
+        console.log('Product added to cart');
+        fetchCartItems(); // Refresh cart items after adding a product
+      } else {
+        console.error('Failed to add product to cart');
+      }
+    } catch (error) {
+      console.error('Error adding product to cart:', error);
+    }
+  };
 
+  const removeFromCart = async (cartId) => {
+    try {
+      const response = await fetch(`http://127.0.0.1:5000/cart/${cartId}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
 
+      if (response.ok) {
+        console.log('Product removed from cart');
+        fetchCartItems(); // Refresh cart items after removing a product
+      } else {
+        console.error('Failed to remove product from cart');
+      }
+    } catch (error) {
+      console.error('Error removing product from cart:', error);
+    }
+  };
 
-// import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
+  return (
+    <div>
+      <h2>Your Shopping Cart</h2>
+      <ul>
+        {cartItems.map(item => (
+          <li key={item.id}>
+            {item.name} - {item.quantity} x ${item.price} = ${item.total}
+            <button onClick={() => removeFromCart(item.id)}>Remove</button>
+          </li>
+        ))}
+      </ul>
+      {/* Add product to cart example */}
+      <button onClick={() => addToCart(1, 2)}>Add Product ID 1</button>
+    </div>
+  );
+};
 
-// const Cart = () => {
-//     const [cartItems, setCartItems] = useState([]);
-
-//     useEffect(() => {
-//         const fetchCartItems = async () => {
-//             try {
-//                 const response = await axios.get('/cart'); // Adjust endpoint as necessary
-//                 setCartItems(response.data);
-//             } catch (error) {
-//                 console.error('Failed to fetch cart items:', error);
-//             }
-//         };
-
-//         fetchCartItems();
-//     }, []);
-
-//     return (
-//         <div>
-//             <h1>Your Cart</h1>
-//             {cartItems.length === 0 ? <p>Your cart is empty</p> : (
-//                 <ul>
-//                     {cartItems.map(item => (
-//                         <li key={item.id}>
-//                             {item.name} - {item.quantity} x ${item.price}
-//                         </li>
-//                     ))}
-//                 </ul>
-//             )}
-//         </div>
-//     );
-// };
-
-// export default Cart;
+export default Cart;
