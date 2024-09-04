@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import "./Login.css";
+import './Login.css';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
@@ -30,15 +30,15 @@ const LoginPage = () => {
           id: data.id,
           username: data.username,
           email: data.email,
-          phone_number: data.phone_number, // Ensure the field matches the backend response
+          phoneNumber: data.phoneNumber,
           role: data.role,
         }));
 
         // Redirect based on user role
         if (data.role === 'admin') {
-          navigate('/admin-dashboard');
+          navigate('/AdminDashboard');
         } else {
-          navigate('/user-dashboard');
+          navigate('/UserDashboard');
         }
       } else {
         alert(data.message || 'Invalid credentials');

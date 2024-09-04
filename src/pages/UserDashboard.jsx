@@ -1,38 +1,104 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import './UserDashboard.css';
 
-const UserDashboard = () => {
-  const [user, setUser] = useState(null);
+function UserDashboard() {
+  const [user, setUser] = useState({});
 
   useEffect(() => {
-    const userData = JSON.parse(localStorage.getItem('user'));
-    if (userData) {
-      setUser(userData);
-    } else {
-      // Handle the case where user data is not found
-      // You might want to redirect to login page or show an error
+    // Simulate fetching user data after login
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    if (storedUser) {
+      setUser(storedUser);
     }
   }, []);
 
-  if (!user) {
-    return <div>Loading...</div>;
-  }
+  const handleLogout = () => {
+    // Clear user data and redirect to login
+    localStorage.removeItem('user');
+    window.location.href = '/login';
+  };
 
   return (
-    <div className="user-dashboard">
-      <h2>Welcome, {user.username}</h2>
-      <p>Email: {user.email}</p>
-      {user.phone_number && <p>Phone Number: {user.phone_number}</p>}
-      {user.role === 'seller' && (
-        <div>
-          <h3>Business Details:</h3>
-          <p>Business Name: {user.business_name}</p>
-          <p>Business Email: {user.business_email}</p>
-          <p>Business Address: {user.business_address}</p>
+    <div className="container">
+      <div className="sidebar">
+        <ul>
+          <li>
+            <a href="products?category=smartphones">
+              <span className="icon">
+              <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M3 9l9-7 9 7v10a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z" />
+                </svg>
+              </span>
+              Products
+            </a>
+          </li>
+       
+          <li>
+            <a href="/#">
+              <span className="icon">
+              <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <circle cx="9" cy="21" r="1" />
+                  <circle cx="20" cy="21" r="1" />
+                  <path d="M1 1h4l.09.27A5.97 5.97 0 0 1 10 7h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2H3" />
+                </svg>
+                </span>
+              Cart
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div className="content">
+        <h1>User Dashboard</h1>
+        <div className="profile">
+          <div className="profile-img">
+          <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="64"
+              height="64"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="feather feather-user"
+            >
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+          </div>
+          <div className="profile-details">
+            <div>Name: {user.username}</div>
+            <div>Email: {user.email}</div>
+            {/* <div>Phone Number: {user.phone_number}</div> */}
+          </div>
         </div>
-      )}
-      <button onClick={() => localStorage.removeItem('user')}>Logout</button>
+        <button className="logout-btn" onClick={handleLogout}>
+          LOG OUT
+        </button>
+      </div>
     </div>
   );
-};
+}
 
 export default UserDashboard;
