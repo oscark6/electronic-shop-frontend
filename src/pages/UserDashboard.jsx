@@ -5,7 +5,7 @@ function UserDashboard() {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    // Simulate fetching user data after login
+    // Fetch user data from localStorage
     const storedUser = JSON.parse(localStorage.getItem('user'));
     if (storedUser) {
       setUser(storedUser);
@@ -15,6 +15,7 @@ function UserDashboard() {
   const handleLogout = () => {
     // Clear user data and redirect to login
     localStorage.removeItem('user');
+    localStorage.removeItem('access_token');
     window.location.href = '/login';
   };
 
@@ -25,7 +26,8 @@ function UserDashboard() {
           <li>
             <a href="products?category=smartphones">
               <span className="icon">
-              <svg
+                {/* Icon SVG */}
+                <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
                   height="24"
@@ -42,11 +44,11 @@ function UserDashboard() {
               Products
             </a>
           </li>
-       
           <li>
             <a href="/#">
               <span className="icon">
-              <svg
+                {/* Icon SVG */}
+                <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
                   height="24"
@@ -61,7 +63,7 @@ function UserDashboard() {
                   <circle cx="20" cy="21" r="1" />
                   <path d="M1 1h4l.09.27A5.97 5.97 0 0 1 10 7h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2H3" />
                 </svg>
-                </span>
+              </span>
               Cart
             </a>
           </li>
@@ -71,7 +73,8 @@ function UserDashboard() {
         <h1>User Dashboard</h1>
         <div className="profile">
           <div className="profile-img">
-          <svg
+            {/* Profile SVG */}
+            <svg
               xmlns="http://www.w3.org/2000/svg"
               width="64"
               height="64"
@@ -90,7 +93,7 @@ function UserDashboard() {
           <div className="profile-details">
             <div>Name: {user.username}</div>
             <div>Email: {user.email}</div>
-            {/* <div>Phone Number: {user.phone_number}</div> */}
+            {/* <div>Phone Number: {user.phoneNumber}</div> */}
           </div>
         </div>
         <button className="logout-btn" onClick={handleLogout}>

@@ -25,6 +25,7 @@ const LoginPage = () => {
       const data = await response.json();
 
       if (response.ok) {
+        // Save user details to localStorage
         localStorage.setItem('access_token', data.access_token);
         localStorage.setItem('user', JSON.stringify({
           id: data.id,
@@ -38,7 +39,7 @@ const LoginPage = () => {
         if (data.role === 'admin') {
           navigate('/AdminDashboard');
         } else {
-          navigate('/UserDashboard');
+          navigate('/');
         }
       } else {
         alert(data.message || 'Invalid credentials');

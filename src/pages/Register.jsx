@@ -53,7 +53,7 @@ function RegisterPage() {
         name: formData.name,
         email: formData.email,
         address: formData.address,
-        phone_number: formData.phoneNumber
+        phone_no: formData.phoneNumber
       }),
       ...(!isCustomer && {
         business_name: formData.businessName,
@@ -61,6 +61,7 @@ function RegisterPage() {
         business_address: formData.businessAddress
       })
     };
+    console.log(requestBody)
 
     try {
       const response = await fetch('http://127.0.0.1:5000/register', {
@@ -78,7 +79,7 @@ function RegisterPage() {
           id: data.id,
           username: data.username,
           email: data.email,
-          phone_number: data.phone_number, // Ensure the field matches the backend response
+          phone_no: data.phone_no, // Ensure the field matches the backend response
           role: data.role,
         }));
         alert('User registered successfully');

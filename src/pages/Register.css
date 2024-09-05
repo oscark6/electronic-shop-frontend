@@ -1,6 +1,6 @@
 /* General container styling */
 .register-container {
-    max-width: 600px;
+    width: 100%;
     margin: 5% auto;
     padding: 30px;
     background: linear-gradient(90deg, #f0f4fb 50%, #f9d3b4 50%);

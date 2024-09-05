@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import "./ProductPage.css";
 
 const ProductsPage = () => {
@@ -31,23 +32,19 @@ const ProductsPage = () => {
     fetchCategoriesWithProducts();
   }, []);
 
-  const addToCart = async (productId, quantity = 1) => {
+  console.log(localStorage.getItem('access_token'))
+
+  const addToCart = async (product) => {
+    console.log(product)
     try {
-      const response = await fetch('http://127.0.0.1:5000/cart', {
-        method: 'POST',
+      await axios.post('http://127.0.0.1:5000/cart', { productId: product, quantity: 1 }, {
         headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `Bearer ${localStorage.getItem('access_token')}`,
         },
-        body: JSON.stringify({ productId, quantity }),
       });
 
-      if (response.ok) {
-        console.log('Product added to cart');
-      } else {
-        const errorText = await response.text();
-        console.error('Failed to add product to cart:', errorText);
-      }
+      console.log('JWT Token:', localStorage.getItem('access_token'));
+      alert('Product added to cart');
     } catch (error) {
       console.error('Error adding product to cart:', error);
     }
